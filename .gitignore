@@ -74,3 +74,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 RPG/Library/ArtifactDB
+RPG/Library/PackageCache/com.unity.burst@973857688024/.Runtime/libburst-llvm-19.dylib
