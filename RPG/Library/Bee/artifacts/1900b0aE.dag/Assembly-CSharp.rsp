@@ -457,12 +457,17 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.6f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.6f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.6f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
-"Assets/com/heparo/terrain/toolkit/scripts/TerrainToolkit.cs"
+"Assets/Animacoes/Kevin Iglesias/Human Animations/Scripts/SpineProxy.cs"
 "Assets/Scripts/AldeaoDialogo.cs"
 "Assets/Scripts/InteracaoAldeao.cs"
 "Assets/Scripts/InteracaoPlayer.cs"
 "Assets/Scripts/MovePlayer.cs"
+"Assets/Scripts/Novos/PlayerCombat.cs"
+"Assets/Scripts/Novos/PlayerInputHandler2.cs"
+"Assets/Scripts/Novos/PlayerInteraction.cs"
+"Assets/Scripts/Novos/PlayerMovement.cs"
 "Assets/Scripts/PlayerInputHandler.cs"
+"Assets/Terrain/com/heparo/terrain/toolkit/scripts/TerrainToolkit.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

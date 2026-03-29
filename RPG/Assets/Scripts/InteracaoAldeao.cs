@@ -11,6 +11,8 @@ public class InteracaoAldeao : MonoBehaviour
     public float velocidadeRotacao = 5f;
 
     private bool playerPerto = false;
+
+    public AldeaoDialogo aldeao;
     
     private void Start()
     {
@@ -28,7 +30,8 @@ public class InteracaoAldeao : MonoBehaviour
             if (promptInteracao != null)
                 promptInteracao.SetActive(true);
             Debug.Log("Player entrou na área do NPC.");
-            anim.SetBool("isPlayer", true);
+            anim.SetBool("IsPlayer", true);
+            anim.SetBool("isAngry", false);
         }
     }
     
@@ -41,7 +44,13 @@ public class InteracaoAldeao : MonoBehaviour
             if (promptInteracao != null)
                 promptInteracao.SetActive(false);
             Debug.Log("Player saiu da área do NPC."); 
-            anim.SetBool("isPlayer", false);
+            anim.SetBool("IsPlayer", false);
+
+            if (aldeao.index < aldeao.falas.Length)
+            {
+                anim.SetBool("isAngry", true);
+                print("afff");
+            }
         }
             
             

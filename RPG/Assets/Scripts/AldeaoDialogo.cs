@@ -8,7 +8,7 @@ public class AldeaoDialogo : MonoBehaviour
     
     [TextArea] public string[] falas;
     
-    private int index = 0;
+    public int index = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
