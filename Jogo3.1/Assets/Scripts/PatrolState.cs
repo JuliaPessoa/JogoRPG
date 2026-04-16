@@ -1,0 +1,73 @@
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections.Generic;
+
+public class PatrolState : StateMachineBehaviour
+{
+    float timer;
+    List<Transform> wayPoints = new List<Transform>();
+    Transform player;
+    GameObject playerObj;
+    float chaseRange = 16;
+    NavMeshAgent agent;
+
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent = animator.GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("PatrolState: NavMeshAgent não encontrado.");
+            return;
+        }
+        
+        timer = 0;
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        agent.speed = 3f;
+        GameObject go = GameObject.FindGameObjectWithTag("WayPoints");
+        
+        foreach (Transform t in go.transform)
+            wayPoints.Add(t);
+
+        agent.isStopped = false;
+        agent.ResetPath();
+        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        animator.SetBool("IsChasing", false);
+        animator.SetBool("IsAttacking", false);
+        animator.SetBool("PlayerDead", false);
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (agent == null || wayPoints == null || wayPoints.Count == 0)
+            return;
+        if (agent.remainingDistance <= agent.stoppingDistance)
+            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        
+        timer += Time.deltaTime;
+        
+        if (timer > 10)
+            animator.SetBool("IsPatrolling", false);
+
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            float distance = Vector3.Distance(player.position, animator.transform.position);
+            if (distance < chaseRange)
+                animator.SetBool("IsChasing", true);
+        }
+        else
+        {
+            Debug.Log("Player não encontrado.");
+            animator.SetBool("IsPatrolling", false);
+        } 
+        
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.SetDestination(agent.transform.position);
+    }
+}
